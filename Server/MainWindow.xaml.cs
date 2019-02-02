@@ -48,7 +48,7 @@ namespace Server
 
             byte[] longitude = BitConverter.GetBytes(Convert.ToDouble(TextBox_Longitude.Text));
             byte[] latitude = BitConverter.GetBytes(Convert.ToDouble(TextBox_Latitude.Text));
-            byte[] altitude = BitConverter.GetBytes(Convert.ToSingle(TextBox_Altitude.Text, CultureInfo.InvariantCulture.NumberFormat));
+            byte[] altitude = BitConverter.GetBytes(Convert.ToSingle(TextBox_Altitude.Text));
 
             byte[] staffComment = Encoding.ASCII.GetBytes(TextBox_StaffComment.Text);
             byte[] staffCommentLength = GetByteArrayLengthInBytes(staffComment);
