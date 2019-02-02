@@ -23,6 +23,12 @@ namespace Server
         public MainWindow()
         {
             InitializeComponent();
+            ButtonSendData.Click += ButtonSendData_Click;
+        }
+
+        private void ButtonSendData_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }

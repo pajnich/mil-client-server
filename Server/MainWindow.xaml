@@ -5,8 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Server"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="ServerMainWindow" Height="350" Width="525">
     <Grid>
-        
+        <StackPanel HorizontalAlignment="Center" Height="110" VerticalAlignment="Center" Width="200" Orientation="Horizontal">
+            <Label Content="Designation"/>
+            <TextBox TextWrapping="Wrap" Text="" Width="120"/>
+        </StackPanel>
+        <Button Name="ButtonSendData" Content="Button" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="75" Margin="221,0,221,49"/>
     </Grid>
 </Window>
