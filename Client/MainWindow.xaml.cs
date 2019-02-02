@@ -22,6 +22,15 @@ namespace Client
         public MainWindow()
         {
             InitializeComponent();
+            SnapWindowLeft();
+        }
+
+        private void SnapWindowLeft()
+        {
+            this.Top = 0;
+            this.Left = SystemParameters.PrimaryScreenWidth / 2;
+            this.Width = SystemParameters.PrimaryScreenWidth / 2;
+            this.Height = SystemParameters.PrimaryScreenHeight;
         }
 
         void MainWindow_ContentRendered(object e, EventArgs eventArgs)

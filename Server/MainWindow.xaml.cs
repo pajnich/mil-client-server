@@ -21,7 +21,16 @@ namespace Server
         public MainWindow()
         {
             InitializeComponent();
+            SnapWindowRight();
             Button_SendData.Click += Button_SendData_Click;
+        }
+
+        private void SnapWindowRight()
+        {
+            this.Top = 0;
+            this.Left = 0;
+            this.Width = SystemParameters.PrimaryScreenWidth / 2;
+            this.Height = SystemParameters.PrimaryScreenHeight;
         }
 
         private void Button_SendData_Click(object sender, RoutedEventArgs e)
