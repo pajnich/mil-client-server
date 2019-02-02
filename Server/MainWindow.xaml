@@ -9,8 +9,8 @@
     <Grid>
         <StackPanel HorizontalAlignment="Center" Height="110" VerticalAlignment="Center" Width="200" Orientation="Horizontal">
             <Label Content="Designation"/>
-            <TextBox TextWrapping="Wrap" Text="" Width="120"/>
+            <TextBox Name="TextBox_Designation" TextWrapping="Wrap" Text="" Width="120"/>
         </StackPanel>
-        <Button Name="ButtonSendData" Content="Button" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="75" Margin="221,0,221,49"/>
+        <Button Name="Button_SendData" Content="Send Data" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="75" Margin="221,0,221,49"/>
     </Grid>
 </Window>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,12 +24,24 @@ namespace Server
         public MainWindow()
         {
             InitializeComponent();
-            ButtonSendData.Click += ButtonSendData_Click;
+            Button_SendData.Click += Button_SendData_Click;
         }
 
-        private void ButtonSendData_Click(object sender, RoutedEventArgs e)
+        private void Button_SendData_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            TcpClient tcpClient = new TcpClient("localhost", 8080);
+
+            int byteCount = 0;
+            byteCount = Encoding.ASCII.GetByteCount(TextBox_Designation.Text);
+
+            byte[] dataToSend = new byte[byteCount];
+            dataToSend = Encoding.ASCII.GetBytes(TextBox_Designation.Text);
+
+            NetworkStream networkStream = tcpClient.GetStream();
+            networkStream.Write(dataToSend, 0, dataToSend.Length);
+            networkStream.Close();
+
+            tcpClient.Close();
         }
     }
 }
