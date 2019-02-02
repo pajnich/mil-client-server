@@ -57,10 +57,10 @@ namespace Server
             byte[] additionalInfoLength = GetByteArrayLengthInBytes(additionalInfo);
 
             byte[] hostility = ExtractHostilityFromGUI();
-            byte[] statusAmmo = getNumberFromTextAsOneByteArray(TextBox_StatusAmmo.Text); 
-            byte[] statusPersonel = getNumberFromTextAsOneByteArray(TextBox_StatusPersonel.Text);
-            byte[] statusWeapons = getNumberFromTextAsOneByteArray(TextBox_StatusWeapons.Text);
-            byte[] statusPOL = getNumberFromTextAsOneByteArray(TextBox_StatusPOL.Text);
+            byte[] statusAmmo = GetNumberFromTextAsOneByteArray(TextBox_StatusAmmo.Text); 
+            byte[] statusPersonel = GetNumberFromTextAsOneByteArray(TextBox_StatusPersonel.Text);
+            byte[] statusWeapons = GetNumberFromTextAsOneByteArray(TextBox_StatusWeapons.Text);
+            byte[] statusPOL = GetNumberFromTextAsOneByteArray(TextBox_StatusPOL.Text);
 
             byte[] equipmentType = Encoding.ASCII.GetBytes(TextBox_EquipmentType.Text);
             byte[] equipmentTypeLength = GetByteArrayLengthInBytes(equipmentType);
@@ -76,16 +76,6 @@ namespace Server
                                  .ToArray();
 
             return dataToSend;
-        }
-
-        private byte[] getNumberFromTextAsOneByteArray(string text)
-        {
-            return new byte[1] { BitConverter.GetBytes(Convert.ToByte(text))[0] };
-        }
-
-        private byte[] GetByteArrayLengthInBytes(byte[] byteArray)
-        {
-            return new byte[1] { Convert.ToByte(byteArray.Length) };
         }
 
         private byte[] ExtractHostilityFromGUI()
@@ -112,6 +102,16 @@ namespace Server
                     break;
             }
             return hostilityByteArray;
+        }
+
+        private byte[] GetByteArrayLengthInBytes(byte[] byteArray)
+        {
+            return new byte[1] { Convert.ToByte(byteArray.Length) };
+        }
+
+        private byte[] GetNumberFromTextAsOneByteArray(string text)
+        {
+            return new byte[1] { BitConverter.GetBytes(Convert.ToByte(text))[0] };
         }
     }
 }

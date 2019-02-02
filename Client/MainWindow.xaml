@@ -5,11 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Client"
         mc:Ignorable="d"
-        Title="ClientMainWindow" Height="350" Width="525"
+        Title="ClientMainWindow" Height="Auto" Width="Auto"
         ContentRendered="MainWindow_ContentRendered">
 
     <Window.Resources>
-        <!--A Style that affects all TextBlocks-->
         <Style TargetType="StackPanel" x:Key="FormStackPanelStyle">
             <Style.Resources>
                 <Style TargetType="Label">
@@ -78,6 +77,5 @@
                 <Label x:Name="Label_EquipmentType" />
             </StackPanel>
         </StackPanel>
-
     </Grid>
 </Window>

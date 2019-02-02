@@ -15,6 +15,11 @@ namespace Client
             SnapWindowLeft();
         }
 
+        void MainWindow_ContentRendered(object e, EventArgs eventArgs)
+        {
+            StartListeningAsync();
+        }
+
         private void SnapWindowLeft()
         {
             this.Top = 0;
@@ -23,18 +28,12 @@ namespace Client
             this.Height = SystemParameters.PrimaryScreenHeight;
         }
 
-        void MainWindow_ContentRendered(object e, EventArgs eventArgs)
-        {
-            Console.WriteLine("CLIENT: MainWindow_ContentRendered");
-            StartListeningAsync();
-        }
-
         async void StartListeningAsync()
         {
-            await Task.Run(() => HeavyMethod(this));
+            await Task.Run(() => ListenForData(this));
         }
 
-        internal void HeavyMethod(MainWindow gui)
+        internal void ListenForData(MainWindow gui)
         {
             // create socket listener
             IPAddress ip = Dns.GetHostEntry("localhost").AddressList[0];
@@ -45,7 +44,6 @@ namespace Client
             try
             {
                 tcpListener.Start();
-                Console.WriteLine("CLIENT: Socket listener started.");
             }
             catch (Exception exception)
             {
@@ -161,9 +159,9 @@ namespace Client
                 Array.Copy(receivedBuffer, currentReceivedBufferIndex, fieldByteArray, 0, stringFieldLength);
                 string equipmentType = Encoding.ASCII.GetString(fieldByteArray);
 
+                // update GUI with received data
                 gui.Dispatcher.Invoke(() =>
                 {
-                    // UI operations go inside of Invoke
                     Label_Designation.Content = designation;
                     Label_Longitude.Content = longitude;
                     Label_Latitude.Content = latitude;
@@ -177,9 +175,6 @@ namespace Client
                     Label_StatusPOL.Content = statusPOL;
                     Label_EquipmentType.Content = equipmentType;
                 });
-
-                // Heavy operations go outside of Invoke
-                System.Threading.Thread.Sleep(51);
             }
         }
     }

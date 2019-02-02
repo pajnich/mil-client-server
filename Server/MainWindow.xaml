@@ -8,7 +8,6 @@
         Title="ServerMainWindow" Height="Auto" Width="Auto">
 
     <Window.Resources>
-        <!--A Style that affects all TextBlocks-->
         <Style TargetType="StackPanel" x:Key="FormStackPanelStyle">
             <Style.Resources>
                 <Style TargetType="Label">
@@ -32,65 +31,64 @@
     </Window.Resources>
 
     <Grid>
-        <StackPanel HorizontalAlignment="Center" Height="Auto" VerticalAlignment="Center" Width="Auto" Orientation="Vertical" Style="{StaticResource FormStackPanelStyle}">
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Designation" />
-                <TextBox x:Name="TextBox_Designation" MaxLength="21" Text="designation" />
+        <StackPanel HorizontalAlignment="Center" Height="Auto" VerticalAlignment="Center" Width="Auto"  Orientation="Vertical">
+            <StackPanel HorizontalAlignment="Center" Height="Auto" VerticalAlignment="Center" Width="Auto" Orientation="Vertical" Style="{StaticResource FormStackPanelStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Designation" />
+                    <TextBox x:Name="TextBox_Designation" MaxLength="21" Text="designation" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Longitude" />
+                    <TextBox x:Name="TextBox_Longitude" Text="123,45"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Latitude" />
+                    <TextBox x:Name="TextBox_Latitude" Text="-123,45"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Altitude" />
+                    <TextBox x:Name="TextBox_Altitude" Text="1234,56"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Staff Comment" />
+                    <TextBox x:Name="TextBox_StaffComment" MaxLength="20" Text="staff comment"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Additional Info" />
+                    <TextBox x:Name="TextBox_AdditionalInfo" MaxLength="20" Text="additional info"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Hostility" />
+                    <ComboBox x:Name="ComboBox_Hostility">
+                        <ComboBoxItem IsSelected="True">UNSPECIFIED</ComboBoxItem>
+                        <ComboBoxItem>UNKNOWN</ComboBoxItem>
+                        <ComboBoxItem>FRIEND</ComboBoxItem>
+                        <ComboBoxItem>NEUTRAL</ComboBoxItem>
+                        <ComboBoxItem>HOSTILE</ComboBoxItem>
+                    </ComboBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Status Ammo" />
+                    <TextBox x:Name="TextBox_StatusAmmo" MaxLength="3" Text="12"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Status Personel" />
+                    <TextBox x:Name="TextBox_StatusPersonel" MaxLength="3" Text="23"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Status Weapons" />
+                    <TextBox x:Name="TextBox_StatusWeapons" MaxLength="3" Text="34"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Status POL" />
+                    <TextBox x:Name="TextBox_StatusPOL" MaxLength="3" Text="45"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Equipment Type" />
+                    <TextBox x:Name="TextBox_EquipmentType" MaxLength="20" Text="equipment type"/>
+                </StackPanel>
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Longitude" />
-                <TextBox x:Name="TextBox_Longitude" Text="123,45"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Latitude" />
-                <TextBox x:Name="TextBox_Latitude" Text="-123,45"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Altitude" />
-                <TextBox x:Name="TextBox_Altitude" Text="1234,56"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Staff Comment" />
-                <TextBox x:Name="TextBox_StaffComment" MaxLength="20" Text="staff comment"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Additional Info" />
-                <TextBox x:Name="TextBox_AdditionalInfo" MaxLength="20" Text="additional info"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Hostility" />
-                <ComboBox x:Name="ComboBox_Hostility">
-                    <ComboBoxItem IsSelected="True">UNSPECIFIED</ComboBoxItem>
-                    <ComboBoxItem>UNKNOWN</ComboBoxItem>
-                    <ComboBoxItem>FRIEND</ComboBoxItem>
-                    <ComboBoxItem>NEUTRAL</ComboBoxItem>
-                    <ComboBoxItem>HOSTILE</ComboBoxItem>
-                </ComboBox>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Status Ammo" />
-                <TextBox x:Name="TextBox_StatusAmmo" MaxLength="3" Text="12"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Status Personel" />
-                <TextBox x:Name="TextBox_StatusPersonel" MaxLength="3" Text="23"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Status Weapons" />
-                <TextBox x:Name="TextBox_StatusWeapons" MaxLength="3" Text="34"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Status POL" />
-                <TextBox x:Name="TextBox_StatusPOL" MaxLength="3" Text="45"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Equipment Type" />
-                <TextBox x:Name="TextBox_EquipmentType" MaxLength="20" Text="equipment type"/>
-            </StackPanel>
+            <Button Name="Button_SendData" Content="Send Data" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="75" Margin="25"/>
         </StackPanel>
-   
-        <Button Name="Button_SendData" Content="Send Data" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="75" Margin="221,0,221,49"/>
     </Grid>
-
-    
 </Window>
