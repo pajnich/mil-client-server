@@ -1,19 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Server
 {
@@ -58,7 +48,7 @@ namespace Server
 
             byte[] longitude = BitConverter.GetBytes(Convert.ToDouble(TextBox_Longitude.Text));
             byte[] latitude = BitConverter.GetBytes(Convert.ToDouble(TextBox_Latitude.Text));
-            byte[] altitude = BitConverter.GetBytes(float.Parse(TextBox_Altitude.Text, CultureInfo.InvariantCulture.NumberFormat));
+            byte[] altitude = BitConverter.GetBytes(Convert.ToSingle(TextBox_Altitude.Text, CultureInfo.InvariantCulture.NumberFormat));
 
             byte[] staffComment = Encoding.ASCII.GetBytes(TextBox_StaffComment.Text);
             byte[] staffCommentLength = GetByteArrayLengthInBytes(staffComment);
@@ -100,7 +90,7 @@ namespace Server
 
         private byte[] ExtractHostilityFromGUI()
         {
-            string hostilityStringValue = ComboBox_Hostility.SelectedValue.ToString();
+            string hostilityStringValue = ComboBox_Hostility.SelectionBoxItem.ToString();
             byte[] hostilityByteArray = new byte[1];
 
             switch (hostilityStringValue)

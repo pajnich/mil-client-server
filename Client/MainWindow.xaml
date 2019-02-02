@@ -7,8 +7,77 @@
         mc:Ignorable="d"
         Title="ClientMainWindow" Height="350" Width="525"
         ContentRendered="MainWindow_ContentRendered">
+
+    <Window.Resources>
+        <!--A Style that affects all TextBlocks-->
+        <Style TargetType="StackPanel" x:Key="FormStackPanelStyle">
+            <Style.Resources>
+                <Style TargetType="Label">
+                    <Setter Property="HorizontalContentAlignment" Value="Left" />
+                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                    <Setter Property="Width" Value="100" />
+                </Style>
+                <Style TargetType="TextBox">
+                    <Setter Property="HorizontalContentAlignment" Value="Left" />
+                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                    <Setter Property="TextWrapping" Value="Wrap"/>
+                    <Setter Property="Width" Value="200" />
+                </Style>
+            </Style.Resources>
+        </Style>
+    </Window.Resources>
+
     <Grid>
-        <TextBox Name="TextBox_ReceivedData" HorizontalAlignment="Left" Height="250" Margin="63,35,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="408"/>
+        <StackPanel HorizontalAlignment="Center" Height="Auto" VerticalAlignment="Center" Width="Auto" Orientation="Vertical" Style="{StaticResource FormStackPanelStyle}">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Designation" />
+                <Label x:Name="Label_Designation" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Longitude" />
+                <Label x:Name="Label_Longitude" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Latitude" />
+                <Label x:Name="Label_Latitude" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Altitude" />
+                <Label x:Name="Label_Altitude" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Staff Comment" />
+                <Label x:Name="Label_StaffComment" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Additional Info" />
+                <Label x:Name="Label_AdditionalInfo" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Hostility" />
+                <Label x:Name="Label_Hostility" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Status Ammo" />
+                <Label x:Name="Label_StatusAmmo" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Status Personel" />
+                <Label x:Name="Label_StatusPersonel" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Status Weapons" />
+                <Label x:Name="Label_StatusWeapons" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Status POL" />
+                <Label x:Name="Label_StatusPOL" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Equipment Type" />
+                <Label x:Name="Label_EquipmentType" />
+            </StackPanel>
+        </StackPanel>
 
     </Grid>
 </Window>

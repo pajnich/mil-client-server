@@ -1,19 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Client
 {
@@ -67,19 +57,125 @@ namespace Client
             {
                 tcpClient = tcpListener.AcceptTcpClient();
 
-                byte[] receivedBuffer = new byte[100];
+                byte[] receivedBuffer = new byte[200];
                 NetworkStream networkStream = tcpClient.GetStream();
 
                 networkStream.Read(receivedBuffer, 0, receivedBuffer.Length);
 
-                string message = Encoding.ASCII.GetString(receivedBuffer, 0, receivedBuffer.Length);
+                int doubleFieldLength = 8;
+                int floatFieldLength = 4;
+                int byteFieldLength = 1;
+                int currentReceivedBufferIndex = 0;
 
-                Console.WriteLine("CLIENT: Received message: " + message);
+                // designation
+                int stringFieldLength = receivedBuffer[currentReceivedBufferIndex];
+                currentReceivedBufferIndex++;
+                byte[] fieldByteArray = new byte[stringFieldLength];
+                Array.Copy(receivedBuffer, currentReceivedBufferIndex, fieldByteArray, 0, stringFieldLength);
+                string designation = Encoding.ASCII.GetString(fieldByteArray);
+                currentReceivedBufferIndex += stringFieldLength;
+
+                // longitude
+                fieldByteArray = new byte[doubleFieldLength];
+                Array.Copy(receivedBuffer, currentReceivedBufferIndex, fieldByteArray, 0, doubleFieldLength);
+                currentReceivedBufferIndex += doubleFieldLength;
+                string longitude = BitConverter.ToDouble(fieldByteArray, 0).ToString();
+
+                // latitude
+                Array.Copy(receivedBuffer, currentReceivedBufferIndex, fieldByteArray, 0, doubleFieldLength);
+                currentReceivedBufferIndex += doubleFieldLength;
+                string latitude = BitConverter.ToDouble(fieldByteArray, 0).ToString();
+
+                // altitude
+                fieldByteArray = new byte[floatFieldLength];
+                Array.Copy(receivedBuffer, currentReceivedBufferIndex, fieldByteArray, 0, floatFieldLength);
+                currentReceivedBufferIndex += floatFieldLength;
+                string altitude = BitConverter.ToSingle(fieldByteArray, 0).ToString();
+
+                // staff comment
+                stringFieldLength = receivedBuffer[currentReceivedBufferIndex];
+                currentReceivedBufferIndex++;
+                fieldByteArray = new byte[stringFieldLength];
+                Array.Copy(receivedBuffer, currentReceivedBufferIndex, fieldByteArray, 0, stringFieldLength);
+                string staffComment = Encoding.ASCII.GetString(fieldByteArray);
+                currentReceivedBufferIndex += stringFieldLength;
+
+                // additional info
+                stringFieldLength = receivedBuffer[currentReceivedBufferIndex];
+                currentReceivedBufferIndex++;
+                fieldByteArray = new byte[stringFieldLength];
+                Array.Copy(receivedBuffer, currentReceivedBufferIndex, fieldByteArray, 0, stringFieldLength);
+                string additionalInfo = Encoding.ASCII.GetString(fieldByteArray);
+                currentReceivedBufferIndex += stringFieldLength;
+
+                // hostility
+                fieldByteArray = new byte[byteFieldLength];
+                Array.Copy(receivedBuffer, currentReceivedBufferIndex, fieldByteArray, 0, byteFieldLength);
+                currentReceivedBufferIndex += byteFieldLength;
+                int hostilityIndex = fieldByteArray[0];
+                string hostility = "UNSPECIFIED";
+                switch (hostilityIndex)
+                {
+                    case 1:
+                        hostility = "UNKNOWN";
+                        break;
+                    case 2:
+                        hostility = "FRIEND";
+                        break;
+                    case 3:
+                        hostility = "NEUTRAL";
+                        break;
+                    case 4:
+                        hostility = "HOSTILE";
+                        break;
+                }
+
+                // status ammo
+                fieldByteArray = new byte[byteFieldLength];
+                Array.Copy(receivedBuffer, currentReceivedBufferIndex, fieldByteArray, 0, byteFieldLength);
+                currentReceivedBufferIndex += byteFieldLength;
+                string statusAmmo = fieldByteArray[0].ToString();
+
+                // status personel
+                fieldByteArray = new byte[byteFieldLength];
+                Array.Copy(receivedBuffer, currentReceivedBufferIndex, fieldByteArray, 0, byteFieldLength);
+                currentReceivedBufferIndex += byteFieldLength;
+                string statusPersonel = fieldByteArray[0].ToString();
+
+                // status weapons
+                fieldByteArray = new byte[byteFieldLength];
+                Array.Copy(receivedBuffer, currentReceivedBufferIndex, fieldByteArray, 0, byteFieldLength);
+                currentReceivedBufferIndex += byteFieldLength;
+                string statusWeapons = fieldByteArray[0].ToString();
+
+                // status POL
+                fieldByteArray = new byte[byteFieldLength];
+                Array.Copy(receivedBuffer, currentReceivedBufferIndex, fieldByteArray, 0, byteFieldLength);
+                currentReceivedBufferIndex += byteFieldLength;
+                string statusPOL = fieldByteArray[0].ToString();
+
+                // equipment type
+                stringFieldLength = receivedBuffer[currentReceivedBufferIndex];
+                currentReceivedBufferIndex++;
+                fieldByteArray = new byte[stringFieldLength];
+                Array.Copy(receivedBuffer, currentReceivedBufferIndex, fieldByteArray, 0, stringFieldLength);
+                string equipmentType = Encoding.ASCII.GetString(fieldByteArray);
 
                 gui.Dispatcher.Invoke(() =>
                 {
                     // UI operations go inside of Invoke
-                    TextBox_ReceivedData.Text += message;
+                    Label_Designation.Content = designation;
+                    Label_Longitude.Content = longitude;
+                    Label_Latitude.Content = latitude;
+                    Label_Altitude.Content = altitude;
+                    Label_StaffComment.Content = staffComment;
+                    Label_AdditionalInfo.Content = additionalInfo;
+                    Label_Hostility.Content = hostility;
+                    Label_StatusAmmo.Content = statusAmmo;
+                    Label_StatusPersonel.Content = statusPersonel;
+                    Label_StatusWeapons.Content = statusWeapons;
+                    Label_StatusPOL.Content = statusPOL;
+                    Label_EquipmentType.Content = equipmentType;
                 });
 
                 // Heavy operations go outside of Invoke

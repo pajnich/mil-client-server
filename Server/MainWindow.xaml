@@ -39,15 +39,15 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Longitude" />
-                <TextBox x:Name="TextBox_Longitude" Text="111.11"/>
+                <TextBox x:Name="TextBox_Longitude" Text="123,45"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Latitude" />
-                <TextBox x:Name="TextBox_Latitude" Text="-111.11"/>
+                <TextBox x:Name="TextBox_Latitude" Text="-123,45"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Altitude" />
-                <TextBox x:Name="TextBox_Altitude" Text="1111.11"/>
+                <TextBox x:Name="TextBox_Altitude" Text="1234.56"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Staff Comment" />
@@ -69,19 +69,19 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Status Ammo" />
-                <TextBox x:Name="TextBox_StatusAmmo" MaxLength="3" Text="100"/>
+                <TextBox x:Name="TextBox_StatusAmmo" MaxLength="3" Text="12"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Status Personel" />
-                <TextBox x:Name="TextBox_StatusPersonel" MaxLength="3" Text="100"/>
+                <TextBox x:Name="TextBox_StatusPersonel" MaxLength="3" Text="23"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Status Weapons" />
-                <TextBox x:Name="TextBox_StatusWeapons" MaxLength="3" Text="100"/>
+                <TextBox x:Name="TextBox_StatusWeapons" MaxLength="3" Text="34"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Status POL" />
-                <TextBox x:Name="TextBox_StatusPOL" MaxLength="3" Text="100"/>
+                <TextBox x:Name="TextBox_StatusPOL" MaxLength="3" Text="45"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Equipment Type" />
