@@ -17,9 +17,6 @@ using System.Windows.Shapes;
 
 namespace Client
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
@@ -30,7 +27,16 @@ namespace Client
         void MainWindow_ContentRendered(object e, EventArgs eventArgs)
         {
             Console.WriteLine("CLIENT: MainWindow_ContentRendered");
+            StartListeningAsync();
+        }
 
+        async void StartListeningAsync()
+        {
+            await Task.Run(() => HeavyMethod(this));
+        }
+
+        internal void HeavyMethod(MainWindow gui)
+        {
             // create socket listener
             IPAddress ip = Dns.GetHostEntry("localhost").AddressList[0];
             TcpListener tcpListener = new TcpListener(ip, 8080);
@@ -60,6 +66,15 @@ namespace Client
                 string message = Encoding.ASCII.GetString(receivedBuffer, 0, receivedBuffer.Length);
 
                 Console.WriteLine("CLIENT: Received message: " + message);
+
+                gui.Dispatcher.Invoke(() =>
+                {
+                    // UI operations go inside of Invoke
+                    TextBox_ReceivedData.Text += message;
+                });
+
+                // Heavy operations go outside of Invoke
+                System.Threading.Thread.Sleep(51);
             }
         }
     }
