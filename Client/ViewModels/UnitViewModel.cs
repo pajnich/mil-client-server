@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Client.viewmodels
 {
-    public class UnitViewModel : ViewModelBase
+    public class UnitViewModel : ViewModel
     {
         private Unit _unit;
         public Unit Unit {

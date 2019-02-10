@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Client.viewmodels
 {
-    public abstract class ViewModelBase : INotifyPropertyChanged
+    public abstract class ViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
