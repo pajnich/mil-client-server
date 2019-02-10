@@ -35,60 +35,62 @@
             <StackPanel HorizontalAlignment="Center" Height="Auto" VerticalAlignment="Center" Width="Auto" Orientation="Vertical" Style="{StaticResource FormStackPanelStyle}">
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Designation" />
-                    <TextBox x:Name="TextBox_Designation" MaxLength="21" Text="designation" />
+                    <TextBox x:Name="TextBox_Designation" MaxLength="21" Text="{Binding Path=Unit.Designation}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Longitude" />
-                    <TextBox x:Name="TextBox_Longitude" Text="123,45"/>
+                    <TextBox x:Name="TextBox_Longitude" Text="{Binding Path=Unit.Telemetry.Longitude}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Latitude" />
-                    <TextBox x:Name="TextBox_Latitude" Text="-123,45"/>
+                    <TextBox x:Name="TextBox_Latitude" Text="{Binding Path=Unit.Telemetry.Latitude}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Altitude" />
-                    <TextBox x:Name="TextBox_Altitude" Text="1234,56"/>
+                    <TextBox x:Name="TextBox_Altitude" Text="{Binding Path=Unit.Telemetry.Altitude}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Staff Comment" />
-                    <TextBox x:Name="TextBox_StaffComment" MaxLength="20" Text="staff comment"/>
+                    <TextBox x:Name="TextBox_StaffComment" MaxLength="20" Text="{Binding Path=Unit.StaffComment}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Additional Info" />
-                    <TextBox x:Name="TextBox_AdditionalInfo" MaxLength="20" Text="additional info"/>
+                    <TextBox x:Name="TextBox_AdditionalInfo" MaxLength="20" Text="{Binding Path=Unit.AdditionalInfo}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Hostility" />
-                    <ComboBox x:Name="ComboBox_Hostility">
+                    <ComboBox x:Name="ComboBox_Hostility" SelectedValue="{Binding Unit.HostilityEnumValue, Mode=TwoWay}" ItemsSource="{Binding Unit.HostilityEnumTypes}">
+                        <!-- 
                         <ComboBoxItem IsSelected="True">UNSPECIFIED</ComboBoxItem>
                         <ComboBoxItem>UNKNOWN</ComboBoxItem>
                         <ComboBoxItem>FRIEND</ComboBoxItem>
                         <ComboBoxItem>NEUTRAL</ComboBoxItem>
                         <ComboBoxItem>HOSTILE</ComboBoxItem>
+                        -->
                     </ComboBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Status Ammo" />
-                    <TextBox x:Name="TextBox_StatusAmmo" MaxLength="3" Text="12"/>
+                    <TextBox x:Name="TextBox_StatusAmmo" MaxLength="3" Text="{Binding Path=Unit.StatusAmmo}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Status Personel" />
-                    <TextBox x:Name="TextBox_StatusPersonel" MaxLength="3" Text="23"/>
+                    <TextBox x:Name="TextBox_StatusPersonel" MaxLength="3" Text="{Binding Path=Unit.StatusPersonel}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Status Weapons" />
-                    <TextBox x:Name="TextBox_StatusWeapons" MaxLength="3" Text="34"/>
+                    <TextBox x:Name="TextBox_StatusWeapons" MaxLength="3" Text="{Binding Path=Unit.StatusWeapons}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Status POL" />
-                    <TextBox x:Name="TextBox_StatusPOL" MaxLength="3" Text="45"/>
+                    <TextBox x:Name="TextBox_StatusPOL" MaxLength="3" Text="{Binding Path=Unit.StatusPOL}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Equipment Type" />
-                    <TextBox x:Name="TextBox_EquipmentType" MaxLength="20" Text="equipment type"/>
+                    <TextBox x:Name="TextBox_EquipmentType" MaxLength="20" Text="{Binding Path=Unit.EquipmentType}"/>
                 </StackPanel>
             </StackPanel>
-            <Button Name="Button_SendData" Content="Send Data" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="75" Margin="25"/>
+            <Button Name="Button_SendData" Content="Send Data" Command="{Binding Path=SendUnitDataCommand}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="75" Margin="25"/>
         </StackPanel>
     </Grid>
 </Window>

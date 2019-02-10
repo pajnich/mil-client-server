@@ -2,6 +2,10 @@
 {
     public class Telemetry
     {
+        public Telemetry()
+        {
+        }
+
         public Telemetry(double longitude, double latitude, float altitude)
         {
             Longitude = longitude;
