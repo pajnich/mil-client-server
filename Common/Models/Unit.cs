@@ -2,7 +2,7 @@
 
 namespace Common
 {
-    class Unit
+    public class Unit
     {
         public enum HostilityEnum : sbyte
         {
