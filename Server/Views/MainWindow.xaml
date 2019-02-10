@@ -60,13 +60,6 @@
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Hostility" />
                     <ComboBox x:Name="ComboBox_Hostility" SelectedValue="{Binding Unit.HostilityEnumValue, Mode=TwoWay}" ItemsSource="{Binding Unit.HostilityEnumTypes}">
-                        <!-- 
-                        <ComboBoxItem IsSelected="True">UNSPECIFIED</ComboBoxItem>
-                        <ComboBoxItem>UNKNOWN</ComboBoxItem>
-                        <ComboBoxItem>FRIEND</ComboBoxItem>
-                        <ComboBoxItem>NEUTRAL</ComboBoxItem>
-                        <ComboBoxItem>HOSTILE</ComboBoxItem>
-                        -->
                     </ComboBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">

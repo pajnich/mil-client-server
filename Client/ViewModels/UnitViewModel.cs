@@ -3,11 +3,6 @@ using Client.Observers;
 using Client.Providers;
 using Common;
 using Common.viewmodels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Client.viewmodels
 {

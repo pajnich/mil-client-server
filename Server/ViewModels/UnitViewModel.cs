@@ -1,12 +1,7 @@
 ﻿using Common;
 using Common.viewmodels;
-using Server;
 using Server.Network;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Input;
-using static Common.Unit;
 
 namespace Server.viewmodels
 {

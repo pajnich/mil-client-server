@@ -1,9 +1,4 @@
 ﻿using Server.viewmodels;
-using System;
-using System.Globalization;
-using System.Linq;
-using System.Net.Sockets;
-using System.Text;
 using System.Windows;
 
 namespace Server
