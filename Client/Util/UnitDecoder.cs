@@ -10,11 +10,12 @@ namespace Client.Util
 {
     class UnitDecoder
     {
+        private readonly static int FIELD_LENGTH_DOUBLE = 8;
+        private readonly static int FIELD_LENGTH_FLOAT = 4;
+        private readonly static int FIELD_LENGTH_BYTE = 1;
+
         internal static Unit DecodeUnit(byte[] receivedBuffer)
         {
-            int doubleFieldLength = 8;
-            int floatFieldLength = 4;
-            int byteFieldLength = 1;
             int currentReceivedBufferIndex = 0;
 
             // designation
@@ -26,20 +27,20 @@ namespace Client.Util
             currentReceivedBufferIndex += stringFieldLength;
 
             // longitude
-            fieldByteArray = new byte[doubleFieldLength];
-            Array.Copy(receivedBuffer, currentReceivedBufferIndex, fieldByteArray, 0, doubleFieldLength);
-            currentReceivedBufferIndex += doubleFieldLength;
+            fieldByteArray = new byte[FIELD_LENGTH_DOUBLE];
+            Array.Copy(receivedBuffer, currentReceivedBufferIndex, fieldByteArray, 0, FIELD_LENGTH_DOUBLE);
+            currentReceivedBufferIndex += FIELD_LENGTH_DOUBLE;
             double longitude = BitConverter.ToDouble(fieldByteArray, 0);
 
             // latitude
-            Array.Copy(receivedBuffer, currentReceivedBufferIndex, fieldByteArray, 0, doubleFieldLength);
-            currentReceivedBufferIndex += doubleFieldLength;
+            Array.Copy(receivedBuffer, currentReceivedBufferIndex, fieldByteArray, 0, FIELD_LENGTH_DOUBLE);
+            currentReceivedBufferIndex += FIELD_LENGTH_DOUBLE;
             double latitude = BitConverter.ToDouble(fieldByteArray, 0);
 
             // altitude
-            fieldByteArray = new byte[floatFieldLength];
-            Array.Copy(receivedBuffer, currentReceivedBufferIndex, fieldByteArray, 0, floatFieldLength);
-            currentReceivedBufferIndex += floatFieldLength;
+            fieldByteArray = new byte[FIELD_LENGTH_FLOAT];
+            Array.Copy(receivedBuffer, currentReceivedBufferIndex, fieldByteArray, 0, FIELD_LENGTH_FLOAT);
+            currentReceivedBufferIndex += FIELD_LENGTH_FLOAT;
             float altitude = BitConverter.ToSingle(fieldByteArray, 0);
 
             // staff comment
@@ -59,13 +60,16 @@ namespace Client.Util
             currentReceivedBufferIndex += stringFieldLength;
 
             // hostility
-            fieldByteArray = new byte[byteFieldLength];
-            Array.Copy(receivedBuffer, currentReceivedBufferIndex, fieldByteArray, 0, byteFieldLength);
-            currentReceivedBufferIndex += byteFieldLength;
+            fieldByteArray = new byte[FIELD_LENGTH_BYTE];
+            Array.Copy(receivedBuffer, currentReceivedBufferIndex, fieldByteArray, 0, FIELD_LENGTH_BYTE);
+            currentReceivedBufferIndex += FIELD_LENGTH_BYTE;
             int hostilityIndex = fieldByteArray[0];
-            HostilityEnum hostility = HostilityEnum.UNSPECIFIED;
+            HostilityEnum hostility;
             switch (hostilityIndex)
             {
+                case 0:
+                    hostility = HostilityEnum.UNSPECIFIED;
+                    break;
                 case 1:
                     hostility = HostilityEnum.UNKNOWN;
                     break;
@@ -78,30 +82,33 @@ namespace Client.Util
                 case 4:
                     hostility = HostilityEnum.HOSTILE;
                     break;
+                default:
+                    hostility = HostilityEnum.UNSPECIFIED;
+                    break;
             }
 
             // status ammo
-            fieldByteArray = new byte[byteFieldLength];
-            Array.Copy(receivedBuffer, currentReceivedBufferIndex, fieldByteArray, 0, byteFieldLength);
-            currentReceivedBufferIndex += byteFieldLength;
+            fieldByteArray = new byte[FIELD_LENGTH_BYTE];
+            Array.Copy(receivedBuffer, currentReceivedBufferIndex, fieldByteArray, 0, FIELD_LENGTH_BYTE);
+            currentReceivedBufferIndex += FIELD_LENGTH_BYTE;
             byte statusAmmo = fieldByteArray[0];
 
             // status personel
-            fieldByteArray = new byte[byteFieldLength];
-            Array.Copy(receivedBuffer, currentReceivedBufferIndex, fieldByteArray, 0, byteFieldLength);
-            currentReceivedBufferIndex += byteFieldLength;
+            fieldByteArray = new byte[FIELD_LENGTH_BYTE];
+            Array.Copy(receivedBuffer, currentReceivedBufferIndex, fieldByteArray, 0, FIELD_LENGTH_BYTE);
+            currentReceivedBufferIndex += FIELD_LENGTH_BYTE;
             byte statusPersonel = fieldByteArray[0];
 
             // status weapons
-            fieldByteArray = new byte[byteFieldLength];
-            Array.Copy(receivedBuffer, currentReceivedBufferIndex, fieldByteArray, 0, byteFieldLength);
-            currentReceivedBufferIndex += byteFieldLength;
+            fieldByteArray = new byte[FIELD_LENGTH_BYTE];
+            Array.Copy(receivedBuffer, currentReceivedBufferIndex, fieldByteArray, 0, FIELD_LENGTH_BYTE);
+            currentReceivedBufferIndex += FIELD_LENGTH_BYTE;
             byte statusWeapons = fieldByteArray[0];
 
             // status POL
-            fieldByteArray = new byte[byteFieldLength];
-            Array.Copy(receivedBuffer, currentReceivedBufferIndex, fieldByteArray, 0, byteFieldLength);
-            currentReceivedBufferIndex += byteFieldLength;
+            fieldByteArray = new byte[FIELD_LENGTH_BYTE];
+            Array.Copy(receivedBuffer, currentReceivedBufferIndex, fieldByteArray, 0, FIELD_LENGTH_BYTE);
+            currentReceivedBufferIndex += FIELD_LENGTH_BYTE;
             byte statusPOL = fieldByteArray[0];
 
             // equipment type
