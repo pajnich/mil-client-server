@@ -6,40 +6,40 @@ namespace Server
 {
     public class IntRangeRule : ValidationRule
     {
-        private int _min;
-        private int _max;
+        private int _minValue;
+        private int _maxValue;
 
         public IntRangeRule()
         {
         }
 
-        public int Min {
-            get { return _min; }
-            set { _min = value; }
+        public int MinValue {
+            get { return _minValue; }
+            set { _minValue = value; }
         }
 
-        public int Max {
-            get { return _max; }
-            set { _max = value; }
+        public int MaxValue {
+            get { return _maxValue; }
+            set { _maxValue = value; }
         }
 
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
-            int age = 0;
+            int enteredNumber = 0;
 
             try
             {
                 if (((string)value).Length > 0)
-                    age = Int32.Parse((String)value);
+                    enteredNumber = Int32.Parse((String)value);
             }
             catch (Exception e)
             {
                 return new ValidationResult(false, "Illegal characters or " + e.Message);
             }
 
-            if ((age < Min) || (age > Max))
+            if ((enteredNumber < MinValue) || (enteredNumber > MaxValue))
             {
-                return new ValidationResult(false, "Please enter a number in the range: " + Min + " - " + Max + ".");
+                return new ValidationResult(false, "Please enter a number in the range: " + MinValue + " - " + MaxValue + ".");
             }
             else
             {

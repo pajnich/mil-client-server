@@ -59,6 +59,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="Validation\FloatRule.cs" />
+    <Compile Include="Validation\DoubleRule.cs" />
     <Compile Include="Validation\IntRangeRule.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -67,6 +69,7 @@
     <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Network\UnitBroadcaster.cs" />
     <Compile Include="Util\UnitEncoder.cs" />
+    <Compile Include="Validation\StringRangeRule.cs" />
     <Compile Include="ViewModels\UnitViewModel.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
