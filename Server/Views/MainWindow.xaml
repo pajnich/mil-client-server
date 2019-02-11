@@ -1,0 +1,211 @@
+﻿<Window x:Class="Server.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Server"
+        mc:Ignorable="d"
+        Title="ServerMainWindow" Height="Auto" Width="Auto">
+
+    <Window.Resources>
+        <ControlTemplate x:Key="validationTemplate">
+            <DockPanel>
+                <TextBlock Foreground="Red" FontSize="20">!</TextBlock>
+                <AdornedElementPlaceholder/>
+            </DockPanel>
+        </ControlTemplate>
+        <Style TargetType="StackPanel" x:Key="FormStackPanelStyle">
+            <Style.Resources>
+                <Style TargetType="Label">
+                    <Setter Property="HorizontalContentAlignment" Value="Left" />
+                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                    <Setter Property="Width" Value="100" />
+                </Style>
+                <Style TargetType="ComboBox">
+                    <Setter Property="HorizontalContentAlignment" Value="Left" />
+                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                    <Setter Property="Width" Value="200" />
+                </Style>
+            </Style.Resources>
+        </Style>
+        <Style x:Key="textBoxInError" TargetType="{x:Type TextBox}">
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Width" Value="200" />
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true">
+                    <Setter Property="ToolTip" Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" Height="Auto" VerticalAlignment="Center" Width="Auto"  Orientation="Vertical">
+            <StackPanel HorizontalAlignment="Center" Height="Auto" VerticalAlignment="Center" Width="Auto" Orientation="Vertical" Style="{StaticResource FormStackPanelStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Designation" />
+                    <TextBox Name="TextBox_Designation" Validation.ErrorTemplate="{StaticResource validationTemplate}" Style="{StaticResource textBoxInError}" >
+                        <TextBox.Text>
+                            <Binding Path="Unit.Designation" UpdateSourceTrigger="PropertyChanged" >
+                                <Binding.ValidationRules>
+                                    <local:StringRangeRule MinLength="0" MaxLength="21"/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Longitude" />
+                    <TextBox Name="TextBox_Longitude" Validation.ErrorTemplate="{StaticResource validationTemplate}" Style="{StaticResource textBoxInError}" >
+                        <TextBox.Text>
+                            <Binding Path="Unit.Telemetry.Longitude" UpdateSourceTrigger="PropertyChanged" Delay="1000">
+                                <Binding.ValidationRules>
+                                    <local:DoubleRule />
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Latitude" />
+                    <TextBox Name="TextBox_Latitude" Validation.ErrorTemplate="{StaticResource validationTemplate}" Style="{StaticResource textBoxInError}" >
+                        <TextBox.Text>
+                            <Binding Path="Unit.Telemetry.Latitude" UpdateSourceTrigger="PropertyChanged" Delay="1000">
+                                <Binding.ValidationRules>
+                                    <local:DoubleRule />
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Altitude" />
+                    <TextBox Name="TextBox_Altitude" Validation.ErrorTemplate="{StaticResource validationTemplate}" Style="{StaticResource textBoxInError}" >
+                        <TextBox.Text>
+                            <Binding Path="Unit.Telemetry.Altitude" UpdateSourceTrigger="PropertyChanged" Delay="1000">
+                                <Binding.ValidationRules>
+                                    <local:FloatRule />
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Staff Comment" />
+                    <TextBox Name="TextBox_StaffComment" Validation.ErrorTemplate="{StaticResource validationTemplate}" Style="{StaticResource textBoxInError}" >
+                        <TextBox.Text>
+                            <Binding Path="Unit.StaffComment" UpdateSourceTrigger="PropertyChanged" >
+                                <Binding.ValidationRules>
+                                    <local:StringRangeRule MinLength="0" MaxLength="20"/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Additional Info" />
+                    <TextBox Name="TextBox_AdditionalInfo" Validation.ErrorTemplate="{StaticResource validationTemplate}" Style="{StaticResource textBoxInError}" >
+                        <TextBox.Text>
+                            <Binding Path="Unit.AdditionalInfo" UpdateSourceTrigger="PropertyChanged" >
+                                <Binding.ValidationRules>
+                                    <local:StringRangeRule MinLength="0" MaxLength="20"/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Hostility" />
+                    <ComboBox x:Name="ComboBox_Hostility" SelectedValue="{Binding Unit.HostilityEnumValue, Mode=TwoWay}" ItemsSource="{Binding Unit.HostilityEnumTypes}">
+                    </ComboBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Status Ammo" />
+                    <TextBox Name="TextBox_StatusAmmo" Validation.ErrorTemplate="{StaticResource validationTemplate}" Style="{StaticResource textBoxInError}" >
+                        <TextBox.Text>
+                            <Binding Path="Unit.StatusAmmo" UpdateSourceTrigger="PropertyChanged" >
+                                <Binding.ValidationRules>
+                                    <local:IntRangeRule MinValue="0" MaxValue="100"/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Status Personel" />
+                    <TextBox Name="TextBox_StatusPersonel" Validation.ErrorTemplate="{StaticResource validationTemplate}" Style="{StaticResource textBoxInError}" >
+                        <TextBox.Text>
+                            <Binding Path="Unit.StatusPersonel" UpdateSourceTrigger="PropertyChanged" >
+                                <Binding.ValidationRules>
+                                    <local:IntRangeRule MinValue="0" MaxValue="100"/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Status Weapons" />
+                    <TextBox Name="TextBox_StatusWeapons" Validation.ErrorTemplate="{StaticResource validationTemplate}" Style="{StaticResource textBoxInError}" >
+                        <TextBox.Text>
+                            <Binding Path="Unit.StatusWeapons" UpdateSourceTrigger="PropertyChanged" >
+                                <Binding.ValidationRules>
+                                    <local:IntRangeRule MinValue="0" MaxValue="100"/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Status POL" />
+                    <TextBox Name="TextBox_StatusPOL" Validation.ErrorTemplate="{StaticResource validationTemplate}" Style="{StaticResource textBoxInError}" >
+                        <TextBox.Text>
+                            <Binding Path="Unit.StatusPOL" UpdateSourceTrigger="PropertyChanged" >
+                                <Binding.ValidationRules>
+                                    <local:IntRangeRule MinValue="0" MaxValue="100"/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Equipment Type" />
+                    <TextBox Name="TextBox_EquipmentType" Validation.ErrorTemplate="{StaticResource validationTemplate}" Style="{StaticResource textBoxInError}" >
+                        <TextBox.Text>
+                            <Binding Path="Unit.EquipmentType" UpdateSourceTrigger="PropertyChanged" >
+                                <Binding.ValidationRules>
+                                    <local:StringRangeRule MinLength="0" MaxLength="20"/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                </StackPanel>
+            </StackPanel>
+            <Button Name="Button_SendData" Content="Send Data" Command="{Binding Path=SendUnitDataCommand}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="75" Margin="25">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="IsEnabled" Value="False"/>
+                        <Style.Triggers>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=TextBox_Designation}" Value="False"/>
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=TextBox_Longitude}" Value="False"/>
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=TextBox_Latitude}" Value="False"/>
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=TextBox_Altitude}" Value="False"/>
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=TextBox_StaffComment}" Value="False"/>
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=TextBox_AdditionalInfo}" Value="False"/>
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=TextBox_StatusAmmo}" Value="False"/>
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=TextBox_StatusPersonel}" Value="False"/>
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=TextBox_StatusWeapons}" Value="False"/>
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=TextBox_StatusPOL}" Value="False"/>
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=TextBox_EquipmentType}" Value="False"/>
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="IsEnabled" Value="True"/>
+                            </MultiDataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>

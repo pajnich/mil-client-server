@@ -1,8 +1,11 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Linq;
 
 namespace Common
 {
-    class Unit
+    public class Unit
     {
         public enum HostilityEnum : sbyte
         {
@@ -57,5 +60,30 @@ namespace Common
 
         [StringValidator(MaxLength = 20)]
         public string EquipmentType { get; set; }
+
+        public Unit()
+        {
+            Designation = "";
+            Telemetry = new Telemetry();
+            StaffComment = "";
+            AdditionalInfo = "";
+            Hostility = HostilityEnum.UNKNOWN;
+            StatusAmmo = 0;
+            StatusPersonel = 0;
+            StatusWeapons = 0;
+            StatusPOL = 0;
+            EquipmentType = "";
+        }
+
+        public IList<HostilityEnum> HostilityEnumTypes {
+            get {
+                return Enum.GetValues(typeof(HostilityEnum)).Cast<HostilityEnum>().ToList<HostilityEnum>();
+            }
+        }
+
+        public HostilityEnum HostilityEnumValue {
+            get;
+            set;
+        }
     }
 }

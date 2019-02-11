@@ -30,51 +30,51 @@
         <StackPanel HorizontalAlignment="Center" Height="Auto" VerticalAlignment="Center" Width="Auto" Orientation="Vertical" Style="{StaticResource FormStackPanelStyle}">
             <StackPanel Orientation="Horizontal">
                 <Label Content="Designation" />
-                <Label x:Name="Label_Designation" />
+                <Label x:Name="Label_Designation"  Content="{Binding Path=Unit.Designation}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Longitude" />
-                <Label x:Name="Label_Longitude" />
+                <Label x:Name="Label_Longitude" Content="{Binding Path=Unit.Telemetry.Longitude}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Latitude" />
-                <Label x:Name="Label_Latitude" />
+                <Label x:Name="Label_Latitude" Content="{Binding Path=Unit.Telemetry.Latitude}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Altitude" />
-                <Label x:Name="Label_Altitude" />
+                <Label x:Name="Label_Altitude" Content="{Binding Path=Unit.Telemetry.Altitude}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Staff Comment" />
-                <Label x:Name="Label_StaffComment" />
+                <Label x:Name="Label_StaffComment" Content="{Binding Path=Unit.StaffComment}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Additional Info" />
-                <Label x:Name="Label_AdditionalInfo" />
+                <Label x:Name="Label_AdditionalInfo" Content="{Binding Path=Unit.AdditionalInfo}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Hostility" />
-                <Label x:Name="Label_Hostility" />
+                <Label x:Name="Label_Hostility" Content="{Binding Path=Unit.Hostility}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Status Ammo" />
-                <Label x:Name="Label_StatusAmmo" />
+                <Label x:Name="Label_StatusAmmo" Content="{Binding Path=Unit.StatusAmmo}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Status Personel" />
-                <Label x:Name="Label_StatusPersonel" />
+                <Label x:Name="Label_StatusPersonel" Content="{Binding Path=Unit.StatusPersonel}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Status Weapons" />
-                <Label x:Name="Label_StatusWeapons" />
+                <Label x:Name="Label_StatusWeapons" Content="{Binding Path=Unit.StatusWeapons}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Status POL" />
-                <Label x:Name="Label_StatusPOL" />
+                <Label x:Name="Label_StatusPOL" Content="{Binding Path=Unit.StatusPOL}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Equipment Type" />
-                <Label x:Name="Label_EquipmentType" />
+                <Label x:Name="Label_EquipmentType" Content="{Binding Path=Unit.EquipmentType}"/>
             </StackPanel>
         </StackPanel>
     </Grid>
