@@ -21,12 +21,6 @@
                     <Setter Property="VerticalContentAlignment" Value="Center" />
                     <Setter Property="Width" Value="100" />
                 </Style>
-                <Style TargetType="TextBox">
-                    <Setter Property="HorizontalContentAlignment" Value="Left" />
-                    <Setter Property="VerticalContentAlignment" Value="Center" />
-                    <Setter Property="TextWrapping" Value="Wrap"/>
-                    <Setter Property="Width" Value="200" />
-                </Style>
                 <Style TargetType="ComboBox">
                     <Setter Property="HorizontalContentAlignment" Value="Left" />
                     <Setter Property="VerticalContentAlignment" Value="Center" />

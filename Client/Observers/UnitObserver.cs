@@ -31,7 +31,7 @@ namespace Client.Observers
 
         public virtual void OnError(Exception error)
         {
-            // Do nothing.
+            // TODO: Display error to user
         }
 
         public virtual void OnNext(Unit unit)
